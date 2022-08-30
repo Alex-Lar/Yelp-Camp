@@ -42,6 +42,7 @@ const sessionConfig = {
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: true,
+    keepSessionInfo: true,
     cookie: {
         httpOnly: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
@@ -61,6 +62,9 @@ passport.deserializeUser(User.deserializeUser());
 
 // locals variables
 app.use((req, res, next) => {
+    if (!['/login', '/'].includes(req.originalUrl)) {
+        req.session.returnTo = req.originalUrl;
+    }
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
