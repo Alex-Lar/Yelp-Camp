@@ -4,7 +4,7 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({accessToken: mapBoxToken});
 
-const { storage, cloudinary } = require('../cloudinary');
+const { cloudinary } = require('../cloudinary');
 
 
 
